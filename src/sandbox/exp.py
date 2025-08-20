@@ -25,7 +25,7 @@ questions = [
 def chat_with_models(llms, questions):
     for model in llms:
         model_name = model["name"]
-        print(f"\n{'='*60}\n🔍 Testing: {model_name} ({model['description']})\n{'='*60}")
+        print(f"\n{'='*60}\n Testing: {model_name} ({model['description']})\n{'='*60}")
 
         try:
             # Load tokenizer and model
@@ -41,10 +41,10 @@ def chat_with_models(llms, questions):
                 prompt = q + "\n\nAnswer:"
                 response = pipe(prompt, max_new_tokens=1024, do_sample=True, temperature=0.7)[0]['generated_text']
                 answer = response[len(prompt):].strip()
-                print(f"💬 Response: {answer}")
+                print(f"Response: {answer}")
 
         except Exception as e:
-            print(f"⚠️ Error loading {model_name}: {e}")
+            print(f"Error loading {model_name}: {e}")
 
 if __name__ == "__main__":
     chat_with_models(llms, questions)
